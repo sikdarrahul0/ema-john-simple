@@ -1,12 +1,13 @@
 import React from 'react';
 
+
 const Cart = (props) => {
     const cart = props.cart;
     // const total = cart.reduce((total, prd) => total + prd.price, 0);
     let totalPrice = 0;
     for(let i = 0; i < cart.length; i++){
         let item = cart[i];
-        totalPrice = (totalPrice + item.price);
+        totalPrice = (totalPrice + item.price * item.quantity);
     }
     let shipping = 0;
     if( totalPrice > 35){
@@ -27,6 +28,7 @@ const Cart = (props) => {
             <p>Shipping Cost: {shipping} </p>
             <p>TAX: {tax.toFixed(2)}</p>
             <p>Total Price: {(totalPrice + shipping + tax).toFixed(2)}</p>
+            { props.children }
         </div>
     );
 };
